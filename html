@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@1,600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #faf3f0; /* Warna pastel estetik */
+            color: #4a4a4a;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 1. Muka Hadapan (Bunga) */
+        #start-screen {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease-out;
+        }
+
+        .flower-btn {
+            font-size: 80px;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            transition: transform 0.3s;
+            user-select: none;
+        }
+
+        .flower-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .click-text {
+            font-size: 14px;
+            color: #888;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* 2. Kandungan Utama */
+        #main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1.5s ease-in;
+            padding: 50px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        .aesthetic-font {
+            font-family: 'Playfair Display', serif;
+            color: #d4a373;
+        }
+
+        /* Countdown */
+        .countdown-title {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        #timer {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #e29578;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: inline-block;
+        }
+
+        /* Ucapan */
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .kata-kata {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* 6 Petak (Cards) */
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: transparent;
+            height: 120px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card.flip .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+            background-color: white;
+            color: #d4a373;
+            font-size: 24px;
+        }
+
+        .card-back {
+            background-color: #e29578;
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 14px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Skrin Mula: Tekan Bunga -->
+    <div id="start-screen">
+        <div class="flower-btn" onclick="startSurprise()">🌸</div>
+        <div class="click-text">Tekan Bunga</div>
+    </div>
+
+    <!-- Kandungan Utama Selepas Bunga Ditekan -->
+    <div id="main-content">
+        
+        <!-- Seksyen 1: Countdown -->
+        <section>
+            <div class="countdown-title">... time on this earth</div>
+            <div id="timer">Kira-kira...</div>
+        </section>
+
+        <!-- Seksyen 2: Ucapan -->
+        <section>
+            <h1 class="aesthetic-font">Wishing you the happiest of birthday!</h1>
+            <div class="kata-kata">
+                <p>Hai sayang/kawan, selamat hari jadi! 🎂</p>
+                <p>Semoga tahun ini membawa seribu satu kebahagiaan untuk awak. Terima kasih sebab sentiasa ada dan jadi orang yang luar biasa. Saya doakan awak sentiasa dimurahkan rezeki, diberi kesihatan yang baik dan capai semua yang awak impikan.</p>
+                <p>Enjoy your special day! ✨</p>
+            </div>
+        </section>
+
+        <!-- Seksyen 3: 6 Petak -->
+        <section>
+            <h2 class="aesthetic-font">Things I love about you</h2>
+            <div class="grid-container">
+                <!-- Petak 1 -->
+                <div class="card" onclick="this.classList.toggle('flip')">
+                    <div class="card-inner">
+                        <div class="card-front">1</div>
+                        <div class="card-back">Senyuman awak sentiasa buat hari saya ceria.</div>
+                    </div>
+                </div>
+                <!-- Petak 2 -->
+                <div class="card" onclick="this.classList.toggle('flip')">
+                    <div class="card-inner">
+                        <div class="card-front">2</div>
+                        <div class="card-back">Awak sangat penyabar dan memahami.</div>
+                    </div>
+                </div>
+                <!-- Petak 3 -->
+                <div class="card" onclick="this.classList.toggle('flip')">
+                    <div class="card-inner">
+                        <div class="card-front">3</div>
+                        <div class="card-back">Cara awak ambil berat tentang hal kecil.</div>
+                    </div>
+                </div>
+                <!-- Petak 4 -->
+                <div class="card" onclick="this.classList.toggle('flip')">
+                    <div class="card-inner">
+                        <div class="card-front">4</div>
+                        <div class="card-back">Awak tak pernah give up bila hadapi masalah.</div>
+                    </div>
+                </div>
+                <!-- Petak 5 -->
+                <div class="card" onclick="this.classList.toggle('flip')">
+                    <div class="card-inner">
+                        <div class="card-front">5</div>
+                        <div class="card-back">Lawak awak yang kadang-kadang hambar tapi comel.</div>
+                    </div>
+                </div>
+                <!-- Petak 6 -->
+                <div class="card" onclick="this.classList.toggle('flip')">
+                    <div class="card-inner">
+                        <div class="card-front">6</div>
+                        <div class="card-back">Cuma awak jadi diri awak sendiri.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Fungsi untuk hilangkan bunga dan tunjuk website
+        function startSurprise() {
+            document.getElementById('start-screen').style.display = 'none';
+            let main = document.getElementById('main-content');
+            main.style.display = 'block';
+            setTimeout(() => {
+                main.style.opacity = 1;
+            }, 50);
+            window.scrollTo(0,0);
+        }
+
+        // --- EDIT TARIKH HARI JADI DEKAT SINI ---
+        // Format: "Bulan Hari, Tahun Jam:Minit:Saat" (Cth: "Jul 10, 2026 00:00:00")
+        var countDownDate = new Date("Aug 15, 2026 00:00:00").getTime();
+
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Jika tarikh dah lepas / tiba
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "HAPPY BIRTHDAY! 🎉";
+            } else {
+                document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
